@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anastasia — Установка</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .logo {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #ff007f;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 520px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+        .card h2 {
+            font-size: 18px;
+            color: #ff007f;
+            margin-bottom: 20px;
+        }
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        .step:last-child { margin-bottom: 0; }
+        .step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #ff007f;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .step-text {
+            line-height: 1.6;
+        }
+        .step-text a {
+            color: #ff007f;
+            text-decoration: none;
+        }
+        .step-text a:hover {
+            text-decoration: underline;
+        }
+        .step-text code {
+            background: #2a2a2a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #ffb3d9;
+        }
+        .btn {
+            display: inline-block;
+            background: #ff007f;
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #cc0066;
+        }
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #444;
+            color: #ccc;
+        }
+        .btn-secondary:hover {
+            border-color: #ff007f;
+            color: #ff007f;
+            background: transparent;
+        }
+        .warning {
+            background: #1a1200;
+            border: 1px solid #665200;
+            border-radius: 12px;
+            padding: 16px 20px;
+            max-width: 520px;
+            width: 100%;
+            font-size: 13px;
+            color: #ccaa00;
+            line-height: 1.5;
+        }
+        .warning strong { color: #ffcc00; }
+        .heart {
+            color: #ff007f;
+            font-size: 20px;
+        }
+        .footer {
+            margin-top: 40px;
+            color: #555;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">♡</div>
+    <h1>Anastasia</h1>
+    <p class="subtitle">Расширение для Google Chrome</p>
+
+    <div class="card">
+        <h2>Установка</h2>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+                Скачайте расширение с <a href="https://github.com/bylka2W/Anastasia/archive/refs/heads/main.zip" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+                Распакуйте архив в любую папку
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+                Откройте <code>chrome://extensions</code> в адресной строке
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+                Включите <strong>Режим разработчика</strong> (Developer mode) в правом верхнем углу
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-text">
+                Нажмите <strong>Загрузить распакованное расширение</strong> (Load unpacked) и выберите папку <code>Anastasia</code>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-text">
+                Готово! Откройте <a href="https://chat.deepseek.com" target="_blank">chat.deepseek.com</a> и нажмите кнопку <strong>A</strong> в правом нижнем углу
+            </div>
+        </div>
+
+        <div class="btn-row">
+            <a href="https://github.com/bylka2W/Anastasia/archive/refs/heads/main.zip" class="btn" target="_blank">Скачать расширение</a>
+            <a href="https://chat.deepseek.com" class="btn btn-secondary" target="_blank">Открыть DeepSeek</a>
+        </div>
+    </div>
+
+    <div class="warning">
+        <strong>Важно:</strong> Расширение работает только на <code>chat.deepseek.com</code>. Не закрывайте папку с расширением — иначе Chrome удалит его.
+    </div>
+
+    <p class="footer">Anastasia <span class="heart">♡</span> 2026</p>
+</body>
+</html>
