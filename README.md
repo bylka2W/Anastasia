@@ -5,14 +5,7 @@
 
 ## Установка
 
-Откройте [install.html](install.html) в браузере и следуйте инструкциям. [install.html](https://htmlpreview.github.io/?https://github.com/bylka2W/Anastasia/blob/main/install.html)
-
-### Вручную
-1. Скачайте архив или склонируйте репозиторий
-2. Откройте `chrome://extensions`
-3. Включите **Режим разработчика**
-4. Нажмите **Загрузить распакованное расширение**
-5. Выберите папку `Anastasia`
+Откройте [install.html](https://htmlpreview.github.io/?https://github.com/bylka2W/Anastasia/blob/main/install.html) в браузере и следуйте инструкциям.
 
 ## Использование
 
