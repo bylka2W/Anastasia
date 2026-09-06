@@ -5,7 +5,7 @@
 
 ## Установка
 
-Откройте [install.html](install.html) в браузере и следуйте инструкциям. [install.html](https://github.io)
+Откройте [install.html](install.html) в браузере и следуйте инструкциям. [install.html](https://htmlpreview.github.io/?https://github.com/bylka2W/Anastasia/blob/main/install.html)
 
 ### Вручную
 1. Скачайте архив или склонируйте репозиторий
