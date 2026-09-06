@@ -1,0 +1,67 @@
+#anastasia-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #222;
+    color: white;
+
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+
+    z-index: 999999;
+}
+
+#anastasia-button:hover {
+    background: #333;
+}
+
+html.anastasia-mode #anastasia-button {
+    background: #ff007f;
+}
+
+html.anastasia-mode {
+    --primary: #ff007f;
+    --primary_color: #ffffff;
+    --brand-color: #ff007f;
+}
+
+html.anastasia-mode textarea {
+    border-color: #ff007f !important;
+}
+
+html.anastasia-mode textarea:focus {
+    border-color: #ff007f !important;
+    box-shadow: 0 0 0 2px rgba(255, 0, 127, 0.25) !important;
+}
+
+html.anastasia-mode ::selection {
+    background: rgba(255, 0, 127, 0.35);
+}
+
+.ds-scroll-area__gutters,
+.ds-scroll-area__horizontal-bar,
+.ds-scroll-area__vertical-gutter {
+    background: transparent !important;
+    border: none !important;
+}
+
+div[class*="_77cefa5"].focused,
+div[class*="_3d616d3"].focused,
+textarea.ds-scroll-area {
+    outline: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+}
+
+textarea.anastasia-injecting {
+    color: transparent !important;
+    caret-color: transparent !important;
+}

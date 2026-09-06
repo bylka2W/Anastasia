@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Anastasia",
+  "version": "0.3.0",
+  "description": "Anastasia AI companion",
+  "content_scripts": [
+    {
+      "matches": ["https://chat.deepseek.com/*"],
+      "js": ["interceptor.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://chat.deepseek.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
