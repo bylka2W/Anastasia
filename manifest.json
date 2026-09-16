@@ -6,6 +6,12 @@
   "icons": {
     "128": "icon.png"
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["AnastasiaFon.png"],
+      "matches": ["https://chat.deepseek.com/*"]
+    }
+  ],
   "content_scripts": [
     {
       "matches": ["https://chat.deepseek.com/*"],

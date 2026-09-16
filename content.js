@@ -220,6 +220,89 @@ function restoreHearts() {
     heartSwaps = [];
 }
 
+let bgStyleEl = null;
+
+function applyBackground() {
+    if (bgStyleEl) return;
+
+    const url = chrome.runtime.getURL("AnastasiaFon.png");
+    if (!url) return;
+
+    bgStyleEl = document.createElement("style");
+    bgStyleEl.id = "anastasia-bg";
+
+    bgStyleEl.textContent =
+        'html.anastasia-mode {' +
+        '  background: url("' + url + '") no-repeat center center fixed !important;' +
+        '  background-size: cover !important;' +
+        '}' +
+        'html.anastasia-mode body, ' +
+        'html.anastasia-mode .ds-scroll-area, ' +
+        'html.anastasia-mode [class*="ds-scroll-area"], ' +
+        'html.anastasia-mode [class*="ds-virtual-list-items"], ' +
+        'html.anastasia-mode [class*="ds-scroll-area"] .ds-markdown, ' +
+        'html.anastasia-mode .ds-message {' +
+        '  background: transparent !important;' +
+        '}' +
+        'html.anastasia-mode body::after {' +
+        '  content: "" !important;' +
+        '  position: fixed !important;' +
+        '  inset: 0 !important;' +
+        '  background: rgba(0, 0, 0, 0.16) !important;' +
+        '  pointer-events: none !important;' +
+        '  z-index: 5 !important;' +
+        '}' +
+        'html.anastasia-mode .anastasia-heart, ' +
+        'html.anastasia-mode [data-anastasia-done] {' +
+        '  position: relative !important;' +
+        '  z-index: 6 !important;' +
+        '}' +
+        'html.anastasia-mode aside, ' +
+        'html.anastasia-mode header, ' +
+        'html.anastasia-mode [class*="sidebar"], ' +
+        'html.anastasia-mode [class*="input-area"], ' +
+        'html.anastasia-mode [class*="composer"], ' +
+        'html.anastasia-mode [class*="user-input"] {' +
+        '  background: rgba(255, 255, 255, 0.88) !important;' +
+        '}';
+
+    document.documentElement.appendChild(bgStyleEl);
+}
+
+function removeBackground() {
+    if (bgStyleEl && bgStyleEl.parentNode) {
+        bgStyleEl.parentNode.removeChild(bgStyleEl);
+    }
+
+    bgStyleEl = null;
+}
+
+let aiLabelObserver = null;
+
+function removeAILabels() {
+    for (const el of document.querySelectorAll('div')) {
+        if (el.textContent.trim() === 'AI-generated, for reference only') {
+            el.remove();
+        }
+    }
+}
+
+function startAILabelRemoval() {
+    removeAILabels();
+
+    if (!aiLabelObserver) {
+        aiLabelObserver = new MutationObserver(() => removeAILabels());
+        aiLabelObserver.observe(document.body, { childList: true, subtree: true });
+    }
+}
+
+function stopAILabelRemoval() {
+    if (aiLabelObserver) {
+        aiLabelObserver.disconnect();
+        aiLabelObserver = null;
+    }
+}
+
 function fixPlaceholder() {
     for (const ta of document.querySelectorAll("textarea")) {
         const ph = ta.getAttribute("placeholder");
@@ -275,7 +358,9 @@ function restoreRebrand() {
 
 function enterAnastasiaMode() {
     document.documentElement.classList.add(MODE_CLASS);
+    applyBackground();
     applyRebrand();
+    startAILabelRemoval();
     attachFetchInterceptor();
     fixPlaceholder();
 
@@ -312,11 +397,14 @@ function enterAnastasiaMode() {
 
 function exitAnastasiaMode() {
     document.documentElement.classList.remove(MODE_CLASS);
+    removeBackground();
 
     if (placeholderTimer) {
         clearInterval(placeholderTimer);
         placeholderTimer = null;
     }
+
+    stopAILabelRemoval();
 
     if (rebrandObserver) {
         rebrandObserver.disconnect();
