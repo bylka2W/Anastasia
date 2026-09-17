@@ -14,6 +14,12 @@ let savedPlaceholders = [];
 let placeholderTimer = null;
 let heartSwaps = [];
 
+let NEW_PLACEHOLDER = "Message Anastasia";
+const CONFIG_VERSION_KEY = "anastasia-config-version";
+
+let remoteCssText = "";
+let remoteCssStyleEl = null;
+
 function attachFetchInterceptor() {
     window.__anastasiaMode = true;
     console.log("Anastasia: режим активирован, interceptor.js подхватит");
@@ -26,22 +32,29 @@ function detachFetchInterceptor() {
 
 const LOGO_CONTAINER_SELECTOR = '[class*="e066abb8"]';
 const LOGO_TEXT = '<span style="font-size:24px;font-weight:300;line-height:1;display:inline-flex;align-items:center;margin-right:8px;color:#ff007f;opacity:0.85;">♡</span><span style="font-weight:600;font-size:17px;color:#ff007f;">Anastasia</span>';
-const NEW_PLACEHOLDER = "Message Anastasia";
 const BEST_TEXT = "Best";
-const TEXT_MAP = [
+let TEXT_MAP = [
     ["New chat", "Новый чатик"],
     ["Новый чат", "Новый чатик"],
     ["Where would you like to begin?", "Приветик чем сегодян займемся >.<"],
     ["Где бы вы хотели начать?", "Приветик чем сегодян займемся >.<"],
     ["Start chatting with Expert", "Приветик, чем сегодня займемся >.<"],
     ["Let's start chatting", "я тут как тут, соскучился? >.<"],
+    ["Hello, let's start chatting", "я тут как тут, соскучился? >.<"],
     ["Start chatting with Instant", "я тут как тут, соскучился? >.<"],
     ["Начнём общение", "я тут как тут, соскучился? >.<"],
     ["Start chatting with Vision", "ооо покажи что там у тебя >.<"],
     ["How can I help?", "ну колись, что там у тебя стряслось? >.<"],
     ["Чем могу помочь?", "ну колись, что там у тебя стряслось? >.<"],
     ["What's on your mind today?", "о чём думаешь? только честно! >.<"],
+    ["Hi! What's on your mind today?", "о чём думаешь? только честно! >.<"],
+    ["Good evening. How can I help?", "вечер добрый! ну колись, что у тебя стряслось? >.<"],
+    ["Hi! What's on your mind today?\nHello, let's start chatting", "о чём думаешь? я тут как тут, соскучился? >.<"],
+    ["Good evening. How can I help?\nHi! What's on your mind today?", "вечер добрый! о чём думаешь? только честно! >.<"],
+    ["Hello, let's start chatting\nHi! What's on your mind today?", "я тут как тут! о чём думаешь, соскучился? >.<"],
     ["What can I do for you?", "я рядом, давай устроим что-нибудь крутое >.<"],
+    ["Hi. What can I do for you?", "приветик, чем займёмся? только честно! >.<"],
+    ["Hi. How can I help?", "ну колись, что там у тебя стряслось? >.<"],
     ["Whenever you're ready", "Я полностью готова к работе!"]
 ];
 
@@ -334,6 +347,76 @@ function removeBadges() {
     }
 }
 
+function applyRemoteCss() {
+    if (!remoteCssText) return;
+
+    if (!remoteCssStyleEl) {
+        remoteCssStyleEl = document.createElement("style");
+        remoteCssStyleEl.id = "anastasia-remote-css";
+        document.documentElement.appendChild(remoteCssStyleEl);
+    }
+
+    remoteCssStyleEl.textContent = remoteCssText;
+}
+
+function removeRemoteCss() {
+    if (remoteCssStyleEl && remoteCssStyleEl.parentNode) {
+        remoteCssStyleEl.parentNode.removeChild(remoteCssStyleEl);
+    }
+
+    remoteCssStyleEl = null;
+}
+
+function loadRemoteConfig() {
+    try {
+        chrome.runtime.sendMessage(
+            { type: "anastasia:fetch-config" },
+            (res) => {
+                if (chrome.runtime.lastError || !res || !res.ok) {
+                    console.log("Anastasia: конфиг с GitHub недоступен, используется встроенный");
+                    return;
+                }
+
+                const cfg = res.cfg;
+                const version = parseInt(cfg.version || "0", 10);
+                const saved = parseInt(localStorage.getItem(CONFIG_VERSION_KEY) || "0", 10);
+
+                if (version > saved) {
+                    if (Array.isArray(cfg.textMap)) {
+                        for (const pair of cfg.textMap) {
+                            if (Array.isArray(pair) && pair.length === 2) {
+                                TEXT_MAP.push(pair);
+                            }
+                        }
+                    }
+
+                    if (typeof cfg.css === "string") {
+                        remoteCssText = cfg.css;
+                    }
+
+                    if (typeof cfg.placeholder === "string") {
+                        NEW_PLACEHOLDER = cfg.placeholder;
+                    }
+
+                    localStorage.setItem(CONFIG_VERSION_KEY, String(version));
+
+                    if (isMode()) {
+                        applyRemoteCss();
+                        applyRebrand();
+                        fixPlaceholder();
+                    }
+
+                    console.log("Anastasia: автообновление до версии " + version);
+                } else if (!remoteCssText && typeof cfg.css === "string") {
+                    remoteCssText = cfg.css;
+                }
+            }
+        );
+    } catch (e) {
+        console.log("Anastasia: не удалось получить конфиг (" + e.message + ")");
+    }
+}
+
 function fixPlaceholder() {
     for (const ta of document.querySelectorAll("textarea")) {
         const ph = ta.getAttribute("placeholder");
@@ -390,6 +473,7 @@ function restoreRebrand() {
 function enterAnastasiaMode() {
     document.documentElement.classList.add(MODE_CLASS);
     applyBackground();
+    applyRemoteCss();
     applyRebrand();
     startAILabelRemoval();
     clearBrandText();
@@ -435,6 +519,7 @@ function enterAnastasiaMode() {
 function exitAnastasiaMode() {
     document.documentElement.classList.remove(MODE_CLASS);
     removeBackground();
+    removeRemoteCss();
 
     if (placeholderTimer) {
         clearInterval(placeholderTimer);
@@ -476,3 +561,5 @@ button.title = "Включить Anastasia";
 button.addEventListener("click", toggleMode);
 
 document.body.appendChild(button);
+
+loadRemoteConfig();

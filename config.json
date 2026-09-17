@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "placeholder": "Message Anastasia",
+  "textMap": [
+    ["New chat", "Новый чатик"],
+    ["Новый чат", "Новый чатик"],
+    ["Where would you like to begin?", "Приветик чем сегодян займемся >.<"],
+    ["Где бы вы хотели начать?", "Приветик чем сегодян займемся >.<"],
+    ["Start chatting with Expert", "Приветик, чем сегодня займемся >.<"],
+    ["Let's start chatting", "я тут как тут, соскучился? >.<"],
+    ["Hello, let's start chatting", "я тут как тут, соскучился? >.<"],
+    ["Start chatting with Instant", "я тут как тут, соскучился? >.<"],
+    ["Начнём общение", "я тут как тут, соскучился? >.<"],
+    ["Start chatting with Vision", "ооо покажи что там у тебя >.<"],
+    ["How can I help?", "ну колись, что там у тебя стряслось? >.<"],
+    ["Чем могу помочь?", "ну колись, что там у тебя стряслось? >.<"],
+    ["What's on your mind today?", "о чём думаешь? только честно! >.<"],
+    ["Hi! What's on your mind today?", "о чём думаешь? только честно! >.<"],
+    ["Good evening. How can I help?", "вечер добрый! ну колись, что у тебя стряслось? >.<"],
+    ["Hi! What's on your mind today?\nHello, let's start chatting", "о чём думаешь? я тут как тут, соскучился? >.<"],
+    ["Good evening. How can I help?\nHi! What's on your mind today?", "вечер добрый! о чём думаешь? только честно! >.<"],
+    ["Hello, let's start chatting\nHi! What's on your mind today?", "я тут как тут! о чём думаешь, соскучился? >.<"],
+    ["What can I do for you?", "я рядом, давай устроим что-нибудь крутое >.<"],
+    ["Hi. What can I do for you?", "приветик, чем займёмся? только честно! >.<"],
+    ["Hi. How can I help?", "ну колись, что там у тебя стряслось? >.<"],
+    ["Whenever you're ready", "Я полностью готова к работе!"]
+  ],
+  "css": "html.anastasia-mode textarea {\n    border-color: #ff007f !important;\n}\n\nhtml.anastasia-mode textarea:focus {\n    border-color: #ff007f !important;\n    box-shadow: 0 0 0 2px rgba(255, 0, 127, 0.25) !important;\n}\n\nhtml.anastasia-mode #root div[class*=\"_871cbca\"] {\n    background: linear-gradient(to bottom, transparent 0%, #fd000000 30%, #00000000 30%, #00000000 100%) !important;\n}\n\nhtml.anastasia-mode #root div[class*=\"_871cbca\"] .d72636e2 {\n    background: linear-gradient(180deg, rgba(21, 21, 23, 0) 0%, #00000000 24px) !important;\n}\n\nhtml.anastasia-mode .e5bf614e {\n    border: 1px solid var(--dsw-alias-border-l2) !important;\n    box-sizing: border-box !important;\n    background: #161616 !important;\n    border-radius: 100px !important;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, .04) !important;\n}\n\nhtml.anastasia-mode .b8812f16 {\n    --sider-top-slot-height: 40px;\n    box-sizing: border-box !important;\n    border-right: 1px solid var(--dsw-alias-border-l1) !important;\n    background-color: #121212 !important;\n    z-index: 1;\n    flex-direction: column;\n    min-width: 0;\n    height: 100%;\n    padding: 6px 12px 0;\n    display: flex;\n    position: relative;\n}\n\nhtml.anastasia-mode .f3d18f6a {\n    z-index: 20;\n    color: var(--dsw-alias-label-tertiary);\n    background-color: #121212 !important;\n    box-shadow: 4px 0 0 var(--dsw-specific-sidebar-fill);\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    padding: 2px 10px;\n    font-size: 12px;\n    font-weight: 500;\n    line-height: 18px;\n    position: -webkit-sticky;\n    position: sticky;\n    top: 0;\n}\n\nhtml.anastasia-mode .fbb737a4 {\n    background: #121212 !important;\n}\n\nhtml.anastasia-mode .ds-message:has(.ds-assistant-message-main-content) {\n    color: var(--dsw-alias-label-primary) !important;\n    background: #121212 !important;\n    box-sizing: border-box !important;\n    white-space: pre-wrap !important;\n    word-break: break-word !important;\n    border-radius: 22px !important;\n    max-width: calc(100% - 88px) !important;\n    padding: 10px 16px !important;\n    font-size: 16px !important;\n    line-height: 24px !important;\n    transition: background .3s !important;\n    position: relative !important;\n}\n\nhtml.anastasia-mode ._77cefa5 {\n    box-sizing: border-box !important;\n    width: 100% !important;\n    border: 1px solid var(--dsw-alias-border-l2-darkmode-thin) !important;\n    background: #121212 !important;\n    border-radius: 24px !important;\n    display: flex !important;\n}\n\nhtml.anastasia-mode #root div._765a5cd > div[class*=\"_2be88ba\"] {\n    height: 0 !important;\n}"
+}
