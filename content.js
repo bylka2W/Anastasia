@@ -303,6 +303,37 @@ function stopAILabelRemoval() {
     }
 }
 
+let brandTextSaves = [];
+
+function clearBrandText() {
+    for (const el of document.querySelectorAll('[class*="afa34042"]')) {
+        for (const node of Array.from(el.childNodes)) {
+            if (node.nodeType === Node.TEXT_NODE && node.nodeValue && node.nodeValue.trim()) {
+                brandTextSaves.push({ node, parent: node.parentNode });
+                node.remove();
+            }
+        }
+    }
+}
+
+function restoreBrandText() {
+    for (const save of brandTextSaves) {
+        if (save.node && save.parent) {
+            save.parent.appendChild(save.node);
+        }
+    }
+
+    brandTextSaves = [];
+}
+
+function removeBadges() {
+    for (const el of document.querySelectorAll('[class*="d077096d"]')) {
+        if (el.parentNode) {
+            el.remove();
+        }
+    }
+}
+
 function fixPlaceholder() {
     for (const ta of document.querySelectorAll("textarea")) {
         const ph = ta.getAttribute("placeholder");
@@ -361,6 +392,8 @@ function enterAnastasiaMode() {
     applyBackground();
     applyRebrand();
     startAILabelRemoval();
+    clearBrandText();
+    removeBadges();
     attachFetchInterceptor();
     fixPlaceholder();
 
@@ -369,7 +402,11 @@ function enterAnastasiaMode() {
     if (!rebrandObserver) {
         rebrandObserver = new MutationObserver(() => {
             clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(applyRebrand, 150);
+            debounceTimer = setTimeout(() => {
+                applyRebrand();
+                clearBrandText();
+                removeBadges();
+            }, 150);
         });
 
         rebrandObserver.observe(document.body, {
@@ -413,6 +450,7 @@ function exitAnastasiaMode() {
 
     restorePlaceholders();
     restoreRebrand();
+    restoreBrandText();
     detachFetchInterceptor();
 
     button.textContent = "A";

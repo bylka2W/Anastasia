@@ -61,6 +61,79 @@ textarea.ds-scroll-area {
     background-image: none !important;
 }
 
+html.anastasia-mode #root div[class*="_871cbca"] {
+    background: linear-gradient(to bottom, transparent 0%, #fd000000 30%, #00000000 30%, #00000000 100%) !important;
+}
+
+html.anastasia-mode #root div[class*="_871cbca"] .d72636e2 {
+    background: linear-gradient(180deg, rgba(21, 21, 23, 0) 0%, #00000000 24px) !important;
+}
+
+html.anastasia-mode .e5bf614e {
+    border: 1px solid var(--dsw-alias-border-l2) !important;
+    box-sizing: border-box !important;
+    background: #161616 !important;
+    border-radius: 100px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .04) !important;
+}
+
+html.anastasia-mode .b8812f16 {
+    --sider-top-slot-height: 40px;
+    box-sizing: border-box !important;
+    border-right: 1px solid var(--dsw-alias-border-l1) !important;
+    background-color: #121212 !important;
+    z-index: 1;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    padding: 6px 12px 0;
+    display: flex;
+    position: relative;
+}
+
+html.anastasia-mode .f3d18f6a {
+    z-index: 20;
+    color: var(--dsw-alias-label-tertiary);
+    background-color: #121212 !important;
+    box-shadow: 4px 0 0 var(--dsw-specific-sidebar-fill);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+html.anastasia-mode .fbb737a4 {
+    background: #121212 !important;
+}
+
+html.anastasia-mode ._77cefa5 {
+    cursor: text;
+    box-sizing: border-box !important;
+    --line-height: 24px;
+    width: 100% !important;
+    font-size: 16px;
+    line-height: var(--line-height);
+    transition: box-shadow var(--ds-transition-duration) var(--ds-ease-in-out);
+    border: 1px solid var(--dsw-alias-border-l2-darkmode-thin) !important;
+    background: #121212 !important;
+    border-radius: 24px !important;
+    flex-direction: column;
+    display: flex !important;
+    position: relative;
+    overflow: hidden;
+}
+
+html.anastasia-mode #root div._765a5cd > div[class*="_2be88ba"] {
+    height: 0 !important;
+}
+
 textarea.anastasia-injecting {
     color: transparent !important;
     caret-color: transparent !important;
