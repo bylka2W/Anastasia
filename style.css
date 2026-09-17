@@ -113,6 +113,21 @@ html.anastasia-mode .fbb737a4 {
     background: #121212 !important;
 }
 
+html.anastasia-mode .ds-message:has(.ds-assistant-message-main-content) {
+    color: var(--dsw-alias-label-primary) !important;
+    background: #121212 !important;
+    box-sizing: border-box !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    border-radius: 22px !important;
+    max-width: calc(100% - 88px) !important;
+    padding: 10px 16px !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    transition: background .3s !important;
+    position: relative !important;
+}
+
 html.anastasia-mode ._77cefa5 {
     cursor: text;
     box-sizing: border-box !important;
